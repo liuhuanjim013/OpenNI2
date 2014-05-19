@@ -39,15 +39,13 @@ ALL_DRIVERS = \
 	Source/Drivers/OniFile
 
 # list all wrappers
-ALL_WRAPPERS = \
-	Wrappers/java/OpenNI.jni \
-	Wrappers/java/OpenNI.java 
+ALL_WRAPPERS = 
 
 # list all tools
 ALL_TOOLS = \
 	Source/Drivers/PS1080/PS1080Console \
 	Source/Drivers/PSLink/PSLinkConsole
-	
+
 # list all core projects
 ALL_CORE_PROJS = \
 	$(XNLIB)  \
@@ -65,9 +63,6 @@ CORE_SAMPLES = \
 	Samples/MWClosestPoint \
 	Samples/MWClosestPointApp 
 
-# list all java samples
-JAVA_SAMPLES = \
-	Samples/SimpleViewer.java	
 
 ifeq "$(GLUT_SUPPORTED)" "1"
 	ALL_TOOLS += \
@@ -84,8 +79,7 @@ else
 endif
 
 ALL_SAMPLES = \
-	$(CORE_SAMPLES) \
-	$(JAVA_SAMPLES)
+	$(CORE_SAMPLES) 
 
 # list all projects that are build
 ALL_BUILD_PROJS = \
@@ -122,7 +116,7 @@ $(foreach proj,$(ALL_PROJS),$(eval $(call CREATE_PROJ_TARGET,$(proj))))
 
 # additional dependencies
 $(OPENNI):                            $(XNLIB)
-Wrappers/java/OpenNI.jni:   $(OPENNI) $(XNLIB)
+
 
 Source/Drivers/DummyDevice: $(OPENNI) $(XNLIB)
 Source/Drivers/RawDevice:   $(OPENNI) $(XNLIB)
@@ -143,7 +137,7 @@ Samples/MWClosestPointApp:  $(OPENNI) Samples/MWClosestPoint
 Samples/SimpleViewer:       $(OPENNI)
 Samples/MultiDepthViewer:   $(OPENNI)
 Samples/ClosestPointViewer: $(OPENNI) Samples/MWClosestPoint
-Samples/SimpleViewer.java:            Wrappers/java/OpenNI.java
+
 
 $(FINAL_DIR):
 	mkdir -p $(FINAL_DIR)
